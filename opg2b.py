@@ -59,16 +59,31 @@ def jakobi_rotate(A,k,l,n):
 
     return A
 
-A = np.matrix([[4.,3.,1.,1.], [3.,4.,1.,1.,],[1.,1.,4.,3.,],[1.,1.,3.,4.,]])
-print np.linalg.eig(A)
 toleranse = 1.0e-10
 N = 0
-maxiter = 100
+maxiter = 1000
 maks = 1;
-n= 4
+n= 40
+ro_min = 0
+ro_max = 10
 
+def matrise(ro_min, ro_max, n):
+    h = float(ro_max - ro_min)/n
+    A = np.zeros((n,n))
+    e = -1./h**2
+    for i in range(n):
+        Vi = (ro_min + i*h)**2
+        A[i,i]=2./(h**2)+Vi
+    for j in range(n-1):
+        A[j,j+1] = e
+        A[j+1,j] = e
+    return A
+
+A = matrise(ro_min,ro_max,n)
+print np.linalg.eig(A)
+#print A
 while(offdiagmaks(A,n) > toleranse and N <= maxiter):
     k,l = offdiag(A,n)
     A = jakobi_rotate(A,k,l,n)
     N+=1
-    print A
+print A.diagonal()
