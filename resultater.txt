@@ -1,0 +1,109 @@
+For one electron:
+n= 10
+rho = 5.000000
+Lowest three eigenvalues:
+[  2.9338263    6.65977754  10.14150247]
+Library function:
+[  2.9338263    6.65977754  10.14150247]
+Number of iterations: 132
+Highest offdiagmaks element: 0.000000
+Time used: 0.020348
+
+n= 50
+rho = 5.000000
+Lowest three eigenvalues:
+[  2.9969931    6.98495122  10.96342557]
+Library function:
+[  2.9969931    6.98495122  10.96342557]
+Number of iterations: 3855
+Highest offdiagmaks element: 0.000000
+Time used: 5.702804
+
+n= 150
+rho = 5.000000
+Lowest three eigenvalues:
+[  3.00003557   7.00062309  10.9943056 ]
+Library function:
+[  2.99965733   6.99828883  10.99601528]
+Number of iterations: 20001
+Highest offdiagmaks element: 0.111566
+Time used: 239.041000
+
+n= 10
+rho = 10.000000
+Lowest three eigenvalues:
+[ 2.72256285  5.89458045  9.95979269]
+Library function:
+[ 2.72256285  5.89458045  9.95979269]
+Number of iterations: 71
+Highest offdiagmaks element: 0.000000
+Time used: 0.008615
+
+n= 50
+rho = 10.000000
+Lowest three eigenvalues:
+[  2.98793279   6.93938927  10.85138253]
+Library function:
+[  2.98793279   6.93938927  10.85138253]
+Number of iterations: 3497
+Highest offdiagmaks element: 0.000000
+Time used: 5.409326
+
+n= 150
+rho = 10.000000
+Lowest three eigenvalues:
+[  2.99869432   6.99314171  10.98329838]
+Library function:
+[  2.99862877   6.99314038  10.98325352]
+Number of iterations: 20001
+Highest offdiagmaks element: 0.022231
+Time used: 241.287248
+
+For two electrons:
+omega = 0.01
+n= 50
+rho = 5.000000
+Lowest three eigenvalues:
+[ 0.64597597  2.07328151  4.2808388 ]
+Library function:
+[ 0.64597597  2.07328151  4.2808388 ]
+Number of iterations: 3875
+Highest offdiagmaks element: 0.000000
+Time used: 5.511714
+0.001223
+
+omega = 0.5
+n= 50
+rho = 5.000000
+Lowest three eigenvalues:
+[  3.63989953   8.99200981  15.25630856]
+Library function:
+[  3.63989953   8.99200981  15.25630856]
+Number of iterations: 3778
+Highest offdiagmaks element: 0.000000
+Time used: 5.484249
+0.000921999999999
+
+omega = 1
+n= 50
+rho = 5.000000
+Lowest three eigenvalues:
+[  5.77188087  14.24136987  24.12388718]
+Library function:
+[  5.77188087  14.24136987  24.12388718]
+Number of iterations: 3561
+Highest offdiagmaks element: 0.000000
+Time used: 5.231994
+0.001075
+
+omega = 5
+n= 50
+rho = 5.000000
+Lowest three eigenvalues:
+[ 16.78685646  41.15472535  69.1205604 ]
+Library function:
+[ 16.78685646  41.15472535  69.1205604 ]
+Number of iterations: 1675
+Highest offdiagmaks element: 0.000000
+Time used: 2.338921
+0.000808
