@@ -1,6 +1,6 @@
 import numpy as np
 import sys
-
+import time
 
 def offdiag(A, n):
     maks = 0
@@ -26,7 +26,6 @@ def offdiagmaks(A, n):
 
 
 def jakobi_rotate(A,R,k,l,n):
-
 	if(A[k,l] != 0):
 		tau = float(A[l,l] - A[k,k])/(2*A[k,l])
 
@@ -39,8 +38,6 @@ def jakobi_rotate(A,R,k,l,n):
 	else:
 		c = 1.0
 		s = 0.0
-
-
 	a_kk = A[k,k]
 	a_ll = A[l,l]
 	a_kl = A[k,l]
@@ -50,7 +47,6 @@ def jakobi_rotate(A,R,k,l,n):
 
 	A[k,l] = 0
 	A[l,k] = 0
-
 	for i in range(n):
 		if (i != k and i != l):
 			a_ik = A[i,k]
@@ -62,7 +58,6 @@ def jakobi_rotate(A,R,k,l,n):
 
         r_ik = R[i,k];
         r_il = R[i,l];
-
         R[i,k] = c*r_ik - s*r_il;
         R[i,l] = c*r_il + s*r_ik;
 	return A, R
@@ -85,25 +80,24 @@ def test_offdiagmaks():
     success = abs(computed - expected < tol)
     assert success
 
-
-toleranse = 1.0e-10
-N = 0
-maxiter = 10000
+toleranse = 1.0e-7  #tolerance
+N = 0           # number of iterations
+maxiter = 20000 # max iterations
 maks = 1;
 n= 50
 ro_min = 0
 ro_max = 5
 R = np.identity(n)
 testiter=1
-
+omega = 5
 
 def matrise(ro_min, ro_max, n):
     h = float(ro_max - ro_min)/(n+1)
     A = np.zeros((n,n))
-
     e = -1./(h**2)
     for i in range(n):
-        Vi = (ro_min + i*h)**2
+        rho = (ro_min + (i+1)*h)**2
+        Vi = omega**2*rho**2+1./rho
         A[i,i]=2./(h**2)+Vi
 
     for j in range(n-1):
@@ -112,8 +106,7 @@ def matrise(ro_min, ro_max, n):
     return A
 
 A = matrise(ro_min,ro_max,n)
-print np.sort(np.linalg.eigvals(A))
-
+t0 = time.clock()
 while(offdiagmaks(A,n) > toleranse and N <= maxiter):
     k,l = offdiag(A,n)
     A,R = jakobi_rotate(A,R,k,l,n)
@@ -125,9 +118,20 @@ while(offdiagmaks(A,n) > toleranse and N <= maxiter):
             print "The orthogonality is not preserved for the eigenvectors"
             sys.exit([1])
     N+=1
-print testiter
-print np.sort(A.diagonal())
+t1 = time.clock()
+print "n= %d" %n
+print "rho = %f" %ro_max
+print "Lowest three eigenvalues: "
+print np.sort(A.diagonal())[0:3]
+print "Library function: "
+print np.sort(np.linalg.eigvals(A))[0:3]
+print "Number of iterations: %d"%N
+print "Highest offdiagmaks element: %f "%offdiagmaks(A,n)
+print "Time used: %f"%(t1-t0)
 
-print N
+t2=  time.clock()
+np.linalg.eigvals(A)
+t3 = time.clock()
+print t3-t2
 test_offdiag()
 test_offdiagmaks()
